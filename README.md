@@ -1,24 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## HalalChain Agent (UMHackathon) — MVP Prototype
+
+Front-end heavy prototype for helping SMEs prepare JAKIM (Halal) certification submissions.
+
+- **Stack**: Next.js (App Router) + React + Tailwind
+- **Persistence**: `localStorage` only (no database)
+- **AI**: Vercel AI SDK (Gemini) with safe fallbacks when quota is exceeded
 
 ## Getting Started
 
-First, run the development server:
+### 1) Install dependencies
+
+From the project root:
+
+```bash
+npm install
+```
+
+### 2) Set environment variables
+
+Create or edit `.env.local` in the project root and set:
+
+```env
+GOOGLE_GENERATIVE_AI_API_KEY=your_real_gemini_key_here
+```
+
+Notes:
+- If your Gemini project has **quota = 0**, the chatbox will still respond using offline guidance mode.
+- Whenever you change `.env.local`, you must restart the dev server.
+
+### 3) Run the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4) Open the app
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open:
+- `http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5) Login (mock auth)
+
+On the login screen you can:
+- Select **SME Food Producer** to enter the SME dashboard
+- Select **Ingredient Supplier** to enter the Supplier portal
+
+If you get stuck, use the “Quick access” buttons (Enter as SME / Enter as Supplier).
+
+## Key Features (Prototype)
+
+- **Document upload** (PDF / TXT / XLSX / CSV) with auto-classification
+- **Compliance gap checker** for required documents
+- **Ingredient verification** (Halal / Haram / Ambiguous)
+- **Supplier verification loop** via shared `localStorage` (`halalchain_requests`)
+- **AI Chatbox** (bottom-right) as a JAKIM assistant
+- **Export for JAKIM**:
+  - downloads `HalalChain_Export.json`
+  - downloads `_modified.txt` versions of documents
+  - opens MYeHALAL sign-in page
+
+## Useful localStorage keys
+
+- `halalchain_user`: mock auth session + role
+- `halalchain-mvp-state`: SME uploaded docs + ingredient state
+- `halalchain_requests`: supplier verification requests
+- `halalchain_lang`: language selection
+
+## Troubleshooting
+
+### Port 3000 already in use
+
+If Next.js says port 3000 is already in use, stop the other process and re-run:
+
+```bash
+npm run dev
+```
 
 ## Learn More
 
