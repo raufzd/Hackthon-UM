@@ -1,3 +1,5 @@
+**Presentation Video:** [HalalChain Pitching Vid](https://drive.google.com/drive/folders/1iAIopqime-kq3LpEUr7z3-Gw7oQJp3cb?usp=sharing)
+
 ## HalalChain Agent (UMHackathon) — MVP Prototype
 
 Front-end heavy prototype for helping SMEs prepare JAKIM (Halal) certification submissions.
